@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Recommendation</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background-color: black;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* LEFT */
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .site-name {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* CENTER */
+        .nav-center {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-center a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-center a:hover {
+            text-decoration: underline;
+        }
+
+        /* RIGHT - SEARCH */
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input {
+            padding: 6px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .search-btn, .reset-btn {
+            padding: 6px 10px;
+            border-radius: 5px;
+            border: none;
+            margin-left: 5px;
+            cursor: pointer;
+            background-color: green;
+            color: white;
+            font-weight: bold;
+        }
+
+        .reset-btn {
+            background-color: darkgreen;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background-image: url("image/aboutme.png");
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-left: 100px;
+            color: white;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            top: 0;
+            left: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        .main-title {
+            font-size: 60px;
+            font-weight: bold;
+            line-height: 1.1;
+            border: 4px solid red;
+            padding: 20px;
+            display: inline-block;
+        }
+
+        .description {
+            margin-top: 20px;
+            border: 3px solid red;
+            padding: 15px;
+            width: 400px;
+            font-size: 14px;
+        }
+
+        .book-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: teal;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        /* ===== ICÔNES ===== */
+        .social-icons {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 3;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 22px;
+            border: 2px solid white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        /* ===== RESULTS ===== */
+        #results {
+            padding: 40px;
+            font-size: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* ===== RECOMMENDATION CARDS ===== */
+        .recommendation-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            background-color: #fff;
+        }
+
+        .recommendation-card:hover {
+            transform: scale(1.05);
+        }
+
+        .recommendation-card img {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .recommendation-card h3 {
+            margin: 10px 0 5px 0;
+        }
+
+        .recommendation-card p {
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+
+        <!-- LEFT -->
+        <div class="nav-left">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <span class="site-name">TravelBloom</span>
+        </div>
+
+        <!-- CENTER -->
+        <div class="nav-center">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Rechercher une destination...">
+            <button class="search-btn" onclick="searchKeyword()">Rechercher</button>
+            <button class="reset-btn" onclick="resetSearch()">Réinitialiser</button>
+        </div>
+
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <div class="hero-content">
+            <div class="main-title">
+                EXPLORE<br>
+                DREAM<br>
+                DESTINATION
+            </div>
+
+            <div class="description">
+                Discover beautiful beaches, amazing temples and incredible countries around the world.
+            </div>
+
+            <button class="book-btn">BOOK NOW</button>
+        </div>
+    </section>
+
+    <div id="results"></div>
+
+    <script>
+        const recommendations = {
+            plage: [
+                { name: "Bora Bora", image: "images/borabora.jpg", description: "Une plage paradisiaque avec sable blanc et eau turquoise.", timeZone: "Pacific/Tahiti" },
+                { name: "Maldives", image: "images/maldives.jpg", description: "Des îles magnifiques avec des lagons incroyables.", timeZone: "Indian/Maldives" }
+            ],
+            temple: [
+                { name: "Angkor Wat", image: "images/angkorwat.jpg", description: "Un site historique et architectural au Cambodge.", timeZone: "Asia/Phnom_Penh" },
+                { name: "Kiyomizu-dera", image: "images/kiyomizudera.jpg", description: "Un célèbre temple à Kyoto avec vue panoramique.", timeZone: "Asia/Tokyo" }
+            ],
+            pays: [
+                { name: "France", image: "images/france.jpg", description: "Pays de la gastronomie, du vin et du tourisme.", timeZone: "Europe/Paris" },
+                { name: "Japon", image: "images/japan.jpg", description: "Pays du soleil levant avec une riche culture et technologie.", timeZone: "Asia/Tokyo" }
+            ]
+        };
+
+        function searchKeyword() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+
+            let key = "";
+            if(input === "plage" || input === "plages") key = "plage";
+            else if(input === "temple" || input === "temples") key = "temple";
+            else if(input === "pays" || input === "country" || input === "countries") key = "pays";
+
+            if(key && recommendations[key]) {
+                recommendations[key].forEach(item => {
+                    const card = document.createElement("div");
+                    card.classList.add("recommendation-card");
+
+                    let timeStr = "";
+                    if(item.timeZone){
+                        const options = { timeZone: item.timeZone, hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' };
+                        const localTime = new Date().toLocaleTimeString('en-US', options);
+                        timeStr = `<p><strong>Heure locale :</strong> ${localTime}</p>`;
+                    }
+
+                    card.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        ${timeStr}
+                    `;
+                    resultsDiv.appendChild(card);
+                });
+            } else {
+                resultsDiv.innerHTML = "<p>Aucun résultat trouvé.</p>";
+            }
+        }
+
+        function resetSearch() {
+            document.getElementById("searchInput").value = "";
+            document.getElementById("results").innerHTML = "";
+        }
+    </script>
+
+</body>
+</html>

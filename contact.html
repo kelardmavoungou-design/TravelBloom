@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contactez-nous - Travel Recommendation</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background-color: darkgreen;
+            padding: 15px 40px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 30px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== SECTION CONTACT ===== */
+        .contact-section {
+            padding: 60px;
+            text-align: center;
+        }
+
+        .contact-section h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        /* ===== FORMULAIRE ===== */
+        .contact-form {
+            background-color: white;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        .contact-form label {
+            font-weight: bold;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .contact-form textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: darkgreen;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: green;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="about.html">À propos de nous</a>
+        <a href="contact.html">Contactez-nous</a>
+    </nav>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section class="contact-section">
+        <h1>Contactez-nous</h1>
+        <p>Nous serions ravis de vous entendre. Envoyez-nous un message !</p>
+
+        <form class="contact-form">
+            
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" placeholder="Entrez votre nom" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" placeholder="Écrivez votre message..." required></textarea>
+
+            <button type="submit">Soumettre</button>
+
+        </form>
+    </section>
+
+</body>
+</html>
